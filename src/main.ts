@@ -95,8 +95,8 @@ Revise o seguinte código diff no arquivo "${
     file.to
   }" e leve em consideração o título e a descrição da solicitação pull ao escrever a resposta.
   
-Pull request title: ${prDetails.title}
-Pull request description:
+Pull request titulo: ${prDetails.title}
+Pull request descrição:
 
 ---
 ${prDetails.description}
@@ -111,7 +111,7 @@ ${chunk.changes
   .map((c) => `${c.ln ? c.ln : c.ln2} ${c.content}`)
   .join("\n")}
 \`\`\`
-Lembre-se escreva em português não ingles`;
+`;
 }
 
 async function getAIResponse(prompt: string): Promise<Array<{
@@ -136,11 +136,7 @@ async function getAIResponse(prompt: string): Promise<Array<{
         : {}),
       messages: [
         {
-          role: "system",
-          content: 'ESCREVA TUDO EM PORTUGUES',
-        },
-        {
-          role: "system",
+          role: "user",
           content: prompt,
         },
       ],
