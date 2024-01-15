@@ -79,7 +79,7 @@ async function analyzeCode(
 }
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Sua tarefa é revisar solicitações pull. Instruções:
+  return `Write in portuguese. Sua tarefa é revisar solicitações pull. Instruções:
 - Escreva em portugues.
 - Forneça a resposta no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<review comment>"}]}
 - Não faça comentários positivos ou elogios.
@@ -91,7 +91,7 @@ function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
 - verifique se está seguindo o solid, mas somente se houver alguma sugestão de correção realmente importante.
 - Verifique se há sugestão de optimização. Só sugira se for realmente uma sugestão importante.
 
-Revise o seguinte código diff no arquivo "${
+Revise o seguinte código diff em portugues no arquivo "${
     file.to
   }" e leve em consideração o título e a descrição da solicitação pull ao escrever a resposta.
   
