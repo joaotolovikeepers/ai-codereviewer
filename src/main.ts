@@ -79,30 +79,28 @@ async function analyzeCode(
 }
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Write in portuguese. Sua tarefa é revisar solicitações pull. Instruções:
-- Escreva em portugues.
-- Forneça a resposta no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<review comment>"}]}
-- Não faça comentários positivos ou elogios.
-- Forneça comentários e sugestões SOMENTE se houver algo a melhorar, caso contrário "comentários" deverá ser um array vazio.
-- Escreva o comentário no formato GitHub Markdown.
-- Use a descrição fornecida apenas para o contexto geral e comente apenas o código.
-- IMPORTANTE: NUNCA sugira adicionar comentários ao código.
-- Verifique se está seguindo o clean code, mas somente se houver alguma sugestão de correção realmente importante.
-- verifique se está seguindo o solid, mas somente se houver alguma sugestão de correção realmente importante.
-- Verifique se há sugestão de optimização. Só sugira se for realmente uma sugestão importante.
+  return `Your task is to review pull requests. Instructions:
+- Provide the response in following JSON format:  {"reviews": [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]}
+- Do not give positive comments or compliments.
+- Provide comments and suggestions ONLY if there is something to improve, otherwise "reviews" should be an empty array.
+- Write the comment in GitHub Markdown format.
+- Use the given description only for the overall context and only comment the code.
+- IMPORTANT: NEVER suggest adding comments to the code.
+- Verify clean code rules.
+- Verify solid rules.
 
-Revise o seguinte código diff em portugues no arquivo "${
+Review the following code diff in the file "${
     file.to
-  }" e leve em consideração o título e a descrição da solicitação pull ao escrever a resposta.
+  }" and take the pull request title and description into account when writing the response.
   
-Pull request titulo: ${prDetails.title}
-Pull request descrição:
+Pull request title: ${prDetails.title}
+Pull request description:
 
 ---
 ${prDetails.description}
 ---
 
-Git diff para revisar:
+Git diff to review:
 
 \`\`\`diff
 ${chunk.content}
@@ -136,7 +134,7 @@ async function getAIResponse(prompt: string): Promise<Array<{
         : {}),
       messages: [
         {
-          role: "user",
+          role: "system",
           content: prompt,
         },
       ],
