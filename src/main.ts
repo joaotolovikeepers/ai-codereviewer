@@ -137,6 +137,10 @@ async function getAIResponse(prompt: string): Promise<Array<{
       messages: [
         {
           role: "system",
+          content: 'ESCREVA TUDO EM PORTUGUES',
+        },
+        {
+          role: "system",
           content: prompt,
         },
       ],
