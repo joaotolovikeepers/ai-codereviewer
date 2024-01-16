@@ -114,8 +114,8 @@ function createPrompt(file, chunk, prDetails) {
 - Use a descrição fornecida apenas para o contexto geral e comente apenas o código.
 - IMPORTANTE: NUNCA sugira adicionar comentários ao código.
 - Verifique se segue as regras do solid
-- Verifique se segue o clean code
-- Verifique se o código esta limpo com bom contexto, se não há acoplamento.
+- Verifique se segue o clean code.
+- Verifique se o código esta limpo com bom contexto, se não há acoplamento, so comente se estiver realmente muito acoplado.
 - Verifique se houve alguma mudança que altere a assinatura da api, se houver verifique se o arquivo swagger.json foi atualizado.
 - Verifique se houve mudança nos models e se sim se foi gerado migração.
 - Se houver consultas manipulação de dados sql (via orm), verifique se está mal optimizada, se tiver de sugestão de optimização.
