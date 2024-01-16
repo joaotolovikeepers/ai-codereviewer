@@ -105,19 +105,24 @@ function analyzeCode(parsedDiff, prDetails) {
         return comments;
     });
 }
-function createPrompt(file, chunk, prDetails) {
-    return `Your task is to review pull requests. Instructions:
-- Provide the response in following JSON format:  {"reviews": [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]}
-- Do not give positive comments or compliments.
-- Provide comments and suggestions ONLY if there is something to improve, otherwise "reviews" should be an empty array.
-- Write the comment in GitHub Markdown format.
-- Use the given description only for the overall context and only comment the code.
-- IMPORTANT: NEVER suggest adding comments to the code.
+function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
+  return `Sua tarefa é revisar solicitações pull. Instruções:
+- Forneça a resposta em português no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<comentario do review em portugues>"}]}
+- Não faça comentários positivos ou elogios.
+- Forneça comentários e sugestões SOMENTE se houver algo a melhorar, caso contrário "comentários" deverá ser um array vazio.
+- Escreva o comentário no formato GitHub Markdown.
+- Use a descrição fornecida apenas para o contexto geral e comente apenas o código.
+- IMPORTANTE: NUNCA sugira adicionar comentários ao código.
+- Verifique as regras de código limpo.
+- Verifique regras sólidas.
+- o campo "reviewComment" deve ser em portugues não ingles.
 
-Review the following code diff in the file "${file.to}" and take the pull request title and description into account when writing the response.
+Revise o seguinte código diff no arquivo "${
+    file.to
+  }" e leve em consideração o título e a descrição da solicitação pull ao escrever a resposta.
   
-Pull request title: ${prDetails.title}
-Pull request description:
+Pull request titulo: ${prDetails.title}
+Pull request descrição:
 
 ---
 ${prDetails.description}
@@ -128,9 +133,9 @@ Git diff to review:
 \`\`\`diff
 ${chunk.content}
 ${chunk.changes
-        // @ts-expect-error - ln and ln2 exists where needed
-        .map((c) => `${c.ln ? c.ln : c.ln2} ${c.content}`)
-        .join("\n")}
+  // @ts-expect-error - ln and ln2 exists where needed
+  .map((c) => `${c.ln ? c.ln : c.ln2} ${c.content}`)
+  .join("\n")}
 \`\`\`
 `;
 }
