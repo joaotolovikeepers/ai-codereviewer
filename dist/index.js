@@ -113,6 +113,13 @@ function createPrompt(file, chunk, prDetails) {
 - Escreva o comentário no formato GitHub Markdown.
 - Use a descrição fornecida apenas para o contexto geral e comente apenas o código.
 - IMPORTANTE: NUNCA sugira adicionar comentários ao código.
+- Verifique se segue as regras do solid
+- Verifique se segue o clean code
+- Verifique se o código esta limpo com bom contexto, se não há acoplamento.
+- Verifique se houve alguma mudança que altere a assinatura da api, se houver verifique se o arquivo swagger.json foi atualizado.
+- Verifique se houve mudança nos models e se sim se foi gerado migração.
+- Se houver consultas manipulação de dados sql (via orm), verifique se está mal optimizada, se tiver de sugestão de optimização.
+- Verifique se o nome de funções classes e variaveis estão descritivos e contextualizados e de sugestão caso esteja muito ruim.
 
 Revise o seguinte código diff no arquivo "${file.to}" e leve em consideração o título e a descrição da solicitação pull ao escrever a resposta.
   
