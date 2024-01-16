@@ -78,7 +78,7 @@ async function analyzeCode(
   return comments;
 }
 
-function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
+function createPrompt(file, chunk, prDetails) {
   return `Sua tarefa é revisar solicitações pull. Instruções:
 - Forneça a resposta em português no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<comentario do review em portugues>"}]}
 - Não faça comentários positivos ou elogios.
