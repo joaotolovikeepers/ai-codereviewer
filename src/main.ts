@@ -80,7 +80,7 @@ async function analyzeCode(
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
   return `Sua tarefa é revisar solicitações pull. Instruções:
-- Forneça a resposta no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<review comment em portugues>"}]}
+- Forneça a resposta em português no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<comentario do review em portugues>"}]}
 - Não faça comentários positivos ou elogios.
 - Forneça comentários e sugestões SOMENTE se houver algo a melhorar, caso contrário "comentários" deverá ser um array vazio.
 - Escreva o comentário no formato GitHub Markdown.
