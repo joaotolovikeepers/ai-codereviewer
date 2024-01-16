@@ -105,24 +105,19 @@ function analyzeCode(parsedDiff, prDetails) {
         return comments;
     });
 }
-function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Sua tarefa é revisar solicitações pull. Instruções:
-- Forneça a resposta em português no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<comentario do review em portugues>"}]}
+function createPrompt(file, chunk, prDetails) {
+    return `Sua tarefa é revisar em portugues solicitações pull. Instruções:
+- Forneça a resposta em portugues no seguinte formato JSON: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<review comment>"}]}
 - Não faça comentários positivos ou elogios.
 - Forneça comentários e sugestões SOMENTE se houver algo a melhorar, caso contrário "comentários" deverá ser um array vazio.
 - Escreva o comentário no formato GitHub Markdown.
 - Use a descrição fornecida apenas para o contexto geral e comente apenas o código.
 - IMPORTANTE: NUNCA sugira adicionar comentários ao código.
-- Verifique as regras de código limpo.
-- Verifique regras sólidas.
-- o campo "reviewComment" deve ser em portugues não ingles.
 
-Revise o seguinte código diff no arquivo "${
-    file.to
-  }" e leve em consideração o título e a descrição da solicitação pull ao escrever a resposta.
+Revise o seguinte código diff no arquivo "${file.to}" e leve em consideração o título e a descrição da solicitação pull ao escrever a resposta.
   
-Pull request titulo: ${prDetails.title}
-Pull request descrição:
+Pull request title: ${prDetails.title}
+Pull request description:
 
 ---
 ${prDetails.description}
@@ -133,9 +128,9 @@ Git diff to review:
 \`\`\`diff
 ${chunk.content}
 ${chunk.changes
-  // @ts-expect-error - ln and ln2 exists where needed
-  .map((c) => `${c.ln ? c.ln : c.ln2} ${c.content}`)
-  .join("\n")}
+        // @ts-expect-error - ln and ln2 exists where needed
+        .map((c) => `${c.ln ? c.ln : c.ln2} ${c.content}`)
+        .join("\n")}
 \`\`\`
 `;
 }
